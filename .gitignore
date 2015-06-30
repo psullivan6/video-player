@@ -1,0 +1,19 @@
+# Components/Package files
+node_modules
+bower_components
+libs
+npm-debug.log
+
+# Final compiled directory
+/build
+
+# Local copy of the Mongo Database
+/db
+
+# Environment Variables
+.env
+
+# Misc.
+.DS_Store
+.sass-cache
+.idea

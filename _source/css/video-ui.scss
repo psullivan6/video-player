@@ -1,0 +1,132 @@
+// #############################################################################
+// Video Variables
+// #############################################################################
+$videoControlsMargin: 15px;
+$videoControlsHeight: ($videoControlsMargin * 2) + 17px; // 17px = play/pause height
+$videoControlsAnimation: 0.4s;
+
+
+#video{
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  
+  // ###########################################################################
+  // Container for the video and it's controls
+  // ###########################################################################
+  #video-container{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: percentage(9/16);
+    margin-bottom: $videoControlsHeight;
+  }
+  
+  // ===========================================================================
+  // JS-Generated iframe that houses the actual video
+  // ===========================================================================
+  iframe{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  // ===========================================================================
+  // Custom Video Controls
+  // ===========================================================================
+  #video-controls{
+    position: absolute;
+    bottom: -$videoControlsHeight;
+    width: 100%;
+    height: $videoControlsHeight;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    
+    .video-time{
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: $videoControlsMargin;
+      line-height: 17px;
+      font-size: 11px;
+    }
+    
+    // -------------------------------------------------------------------------
+    // Custom Video Controls > Play / Pause Button
+    // -------------------------------------------------------------------------
+    .button-playPause{
+      position: absolute;
+      top: 1px;
+      left: -1px;
+      margin: $videoControlsMargin;
+      background-color: white;
+      text-align: left;
+      
+      // Size controller for the button. Height is about 17 times as tall as
+      // this font-size value. Use only 0.5px increments.
+      font-size: 1px;
+    }
+    .button-playPause,
+    .button-playPause:before,
+    .button-playPause:after {
+      width:  10em;
+      height: 10em;
+      border-top-right-radius: 3.5em;
+    }
+    .button-playPause{ transition: transform $videoControlsAnimation ease-out; }
+    .button-playPause:before,
+    .button-playPause:after {
+      content: '';
+      position: absolute;
+      background-color: inherit;
+      transition: transform $videoControlsAnimation ease-out, width $videoControlsAnimation ease-out, height $videoControlsAnimation ease-out;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // Custom Video Controls > Play Button
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    .button-playPause {        transform: rotate(-90deg)  skewX(-30deg) scale(1,.866); }
+    .button-playPause:before { transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%); }
+    .button-playPause:after {  transform: rotate(135deg)  skewY(-45deg) scale(.707,1.414) translate(50%); }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // Custom Video Controls > Pause Button
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    .button-playPause.playing,
+    .button-playPause.playing:before,
+    .button-playPause.playing:after{
+      transform: none;
+    }
+    .button-playPause.playing{
+      top: -1px;
+      height: 0;
+      width: 14em;
+    }
+    .button-playPause.playing:before,
+    .button-playPause.playing:after {
+      width:  5em;
+      height: 18em;
+      border-radius: 1.5em;
+    }
+    .button-playPause.playing:before{ left: 0; }
+    .button-playPause.playing:after{ right: 0; }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // Custom Video Controls > Play / Pause Button > Hover
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    .button-playPause:hover {
+      cursor: pointer;
+      background-color: darken(white, 20%);
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // Custom Video Controls > Play / Pause Button > Click
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // .button-playPause.playing{ background-color: #f03; }
+  }
+}
